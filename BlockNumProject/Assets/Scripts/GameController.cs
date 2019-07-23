@@ -30,6 +30,13 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Button _stageSelect;
 
+    [SerializeField,HeaderAttribute("SE Data"), Space(5)]
+    private AudioClip _correctSE;
+    [SerializeField]
+    private AudioClip _incorrectSE;
+
+    private AudioSource _audioSource;
+
     [SerializeField,Range(1,15),HeaderAttribute("Stage Number"), TooltipAttribute("ステージのナンバーを入力する"),Space(5)]
     private int _stageNum;
 
@@ -37,7 +44,7 @@ public class GameController : MonoBehaviour
     private float _countTime = 5.0f;
 
     // Count for scene transition.
-    private int _count = 60;
+    private int _count = 80;
 
     private bool _correctFlag = false;
     private bool _incorrectFlag = false;
@@ -51,6 +58,7 @@ public class GameController : MonoBehaviour
         _text = _text.GetComponent<Text>();
         _answerText = _answerText.GetComponent<Text>();
         _countDownText = _countDownText.GetComponent<Text>();
+        _audioSource = GetComponent<AudioSource>();
 
         _correctAnswer.gameObject.SetActive(false);
         _incorrectAnswer.gameObject.SetActive(false);
@@ -67,10 +75,14 @@ public class GameController : MonoBehaviour
             _countTime -= Time.deltaTime;
             _seconds = (int)_countTime;
             _countDownText.text = _seconds.ToString();
+
+            // Incorrect answer.
+            if (_incorrectFlag)
+                _countTime = Time.deltaTime;
         }
 
         // Correct answer.
-        {
+        {      
             if (_correctFlag)
                 _count--;
 
@@ -106,13 +118,13 @@ public class GameController : MonoBehaviour
         if (_inputField.text == _answerText.text)
         {
             _correctAnswer.gameObject.SetActive(true);
-
+            _audioSource.PlayOneShot(_correctSE);
             _correctFlag = true;
         }
         else
         {
             _incorrectAnswer.gameObject.SetActive(true);
-
+            _audioSource.PlayOneShot(_incorrectSE);
             _incorrectFlag = true;
         }
     }
