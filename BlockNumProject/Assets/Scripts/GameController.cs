@@ -34,13 +34,15 @@ public class GameController : MonoBehaviour
     private AudioClip _correctSE;
     [SerializeField]
     private AudioClip _incorrectSE;
+    [SerializeField]
+    private AudioClip _gameOverSE;
 
     private AudioSource _audioSource;
 
     [SerializeField,Range(1,15),HeaderAttribute("Stage Number"), TooltipAttribute("ステージのナンバーを入力する"),Space(5)]
     private int _stageNum;
 
-    [SerializeField, Range(3.0f, 10.0f), HeaderAttribute("Limited Time"), TooltipAttribute("ステージの制限時間を入力する"), Space(5)]
+    [SerializeField, Range(3.0f, 30.0f), HeaderAttribute("Limited Time"), TooltipAttribute("ステージの制限時間を入力する"), Space(5)]
     private float _countTime = 5.0f;
 
     // Count for scene transition.
@@ -48,6 +50,7 @@ public class GameController : MonoBehaviour
 
     private bool _correctFlag = false;
     private bool _incorrectFlag = false;
+    private bool _gameOverFlag = false;
 
     private int _seconds = 0;
 
@@ -75,10 +78,6 @@ public class GameController : MonoBehaviour
             _countTime -= Time.deltaTime;
             _seconds = (int)_countTime;
             _countDownText.text = _seconds.ToString();
-
-            // Incorrect answer.
-            if (_incorrectFlag)
-                _countTime = Time.deltaTime;
         }
 
         // Correct answer.
@@ -97,9 +96,13 @@ public class GameController : MonoBehaviour
             _stageSelect.gameObject.SetActive(true);
         }
 
-       // Game over.
-       if(_seconds <= 0)
+        if (_seconds <= 0)
+            _gameOverFlag = true;
+
+        // Game over.
+        if (_gameOverFlag && !_gameOver.gameObject.activeInHierarchy)
         {
+            _audioSource.PlayOneShot(_gameOverSE);
             _gameOver.gameObject.SetActive(true);
             _retry.gameObject.SetActive(true);
             _stageSelect.gameObject.SetActive(true);
