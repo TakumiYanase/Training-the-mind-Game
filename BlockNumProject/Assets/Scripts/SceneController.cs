@@ -106,4 +106,18 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("Stage15Scene");
     }
+
+    public void ExitGame()
+    {
+        Quit();
+    }
+
+    void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+    UnityEngine.Application.Quit();
+#endif
+    }
 }

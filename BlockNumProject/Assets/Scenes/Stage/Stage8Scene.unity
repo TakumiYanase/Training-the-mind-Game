@@ -1034,6 +1034,11 @@ PrefabInstance:
       propertyPath: _stageNum
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6038907621594093410, guid: e6e1c425e93f5eb4584ec739d64c8599,
+        type: 3}
+      propertyPath: _countTime
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6038907621652590546, guid: e6e1c425e93f5eb4584ec739d64c8599,
         type: 3}
       propertyPath: m_LocalPosition.z
