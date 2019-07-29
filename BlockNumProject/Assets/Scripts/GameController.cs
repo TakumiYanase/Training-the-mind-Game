@@ -25,10 +25,19 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Image _gameOver;
 
+    [SerializeField]
+    private Image _rankS;
+    [SerializeField]
+    private Image _rankA;
+    [SerializeField]
+    private Image _rankB;
+
     [SerializeField, HeaderAttribute("Button Data"), Space(5)]
     private Button _retry;
     [SerializeField]
     private Button _stageSelect;
+    [SerializeField]
+    private Button _nextStage;
 
     [SerializeField,HeaderAttribute("SE Data"), Space(5)]
     private AudioClip _correctSE;
@@ -45,14 +54,11 @@ public class GameController : MonoBehaviour
     [SerializeField, Range(3.0f, 30.0f), HeaderAttribute("Limited Time"), TooltipAttribute("ステージの制限時間を入力する"), Space(5)]
     private float _countTime = 5.0f;
 
-    // Count for scene transition.
-    private int _count = 80;
-
     private bool _correctFlag = false;
     private bool _incorrectFlag = false;
     private bool _gameOverFlag = false;
 
-    private int _seconds = 0;
+    private int _seconds = 30;
 
     void Start()
     {
@@ -67,26 +73,41 @@ public class GameController : MonoBehaviour
         _incorrectAnswer.gameObject.SetActive(false);
         _retry.gameObject.SetActive(false);
         _stageSelect.gameObject.SetActive(false);
+        _nextStage.gameObject.SetActive(false);
         _gameOver.gameObject.SetActive(false);
+        _rankS.gameObject.SetActive(false);
+        _rankA.gameObject.SetActive(false);
+        _rankB.gameObject.SetActive(false);
     }
 
     void Update()
     {
         // Count Down.
-        if (_countTime > 0)
         {
-            _countTime -= Time.deltaTime;
-            _seconds = (int)_countTime;
-            _countDownText.text = _seconds.ToString();
+            if (_countTime > 0)
+            {
+                _countTime -= Time.deltaTime;
+
+                if (!_correctFlag && !_incorrectFlag && !_gameOverFlag)
+                {
+                    _seconds = (int)_countTime;
+                }
+
+                _countDownText.text = _seconds.ToString();
+            }
         }
+            // Correct answer.
+            {
+                if (_correctFlag)
+            {
+                _stageSelect.gameObject.SetActive(true);
 
-        // Correct answer.
-        {      
-            if (_correctFlag)
-                _count--;
+                // Check time and display score rank.
+                CheckTime(_seconds);
 
-            if (_count < 0)
-                SceneManager.LoadScene("StageSelectScene");
+                if (_stageNum != 15)
+                    _nextStage.gameObject.SetActive(true);
+            }
         }
 
         // Incorrect answer.
@@ -140,5 +161,22 @@ public class GameController : MonoBehaviour
     public void ReturnStageSelect()
     {
         SceneManager.LoadScene("StageSelectScene");
+    }
+
+    public void NextStage()
+    {
+        SceneManager.LoadScene("Stage" + (_stageNum + 1) + "Scene");
+    }
+
+    public void CheckTime(float seconds)
+    {
+        if (seconds >= 21 && seconds <= 30)
+            _rankS.gameObject.SetActive(true);
+
+        if (seconds >= 11 && seconds <= 20)
+            _rankA.gameObject.SetActive(true);
+
+        if (seconds >= 1 && seconds <= 10)
+            _rankB.gameObject.SetActive(true);
     }
 }
