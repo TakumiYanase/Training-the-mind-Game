@@ -51,14 +51,14 @@ public class GameController : MonoBehaviour
     [SerializeField,Range(1,15),HeaderAttribute("Stage Number"), TooltipAttribute("ステージのナンバーを入力する"),Space(5)]
     private int _stageNum;
 
-    [SerializeField, Range(3.0f, 30.0f), HeaderAttribute("Limited Time"), TooltipAttribute("ステージの制限時間を入力する"), Space(5)]
+    [SerializeField, Range(3.0f, 99.0f), HeaderAttribute("Limited Time"), TooltipAttribute("ステージの制限時間を入力する"), Space(5)]
     private float _countTime = 5.0f;
 
     private bool _correctFlag = false;
     private bool _incorrectFlag = false;
     private bool _gameOverFlag = false;
 
-    private int _seconds = 30;
+    private int _seconds = 99;
 
     void Start()
     {
@@ -170,13 +170,13 @@ public class GameController : MonoBehaviour
 
     public void CheckTime(float seconds)
     {
-        if (seconds >= 21 && seconds <= 30)
+        if (seconds >= 41 && seconds <= 60)
             _rankS.gameObject.SetActive(true);
 
-        if (seconds >= 11 && seconds <= 20)
+        if (seconds >= 21 && seconds <= 40)
             _rankA.gameObject.SetActive(true);
 
-        if (seconds >= 1 && seconds <= 10)
+        if (seconds >= 1 && seconds <= 20)
             _rankB.gameObject.SetActive(true);
     }
 }
