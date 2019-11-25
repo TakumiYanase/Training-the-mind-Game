@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(InputField))]
+[RequireComponent(typeof(Text))]
+[RequireComponent(typeof(AudioSource))]
+
 public class GameController : MonoBehaviour
 {
     [SerializeField, HeaderAttribute("InputField")]
