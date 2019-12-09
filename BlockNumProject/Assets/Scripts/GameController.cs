@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    [SerializeField,Range(1,15),HeaderAttribute("Stage Number"), TooltipAttribute("ステージのナンバーを入力する"),Space(5)]
+    [SerializeField,Range(1,25),HeaderAttribute("Stage Number"), TooltipAttribute("ステージのナンバーを入力する"),Space(5)]
     private int _stageNum;
 
     [SerializeField, Range(3.0f, 99.0f), HeaderAttribute("Limited Time"), TooltipAttribute("ステージの制限時間を入力する"), Space(5)]
