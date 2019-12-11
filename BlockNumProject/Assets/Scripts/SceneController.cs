@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    const int LAST_STAGE = 16; // 最後のステージに＋１
+
     // タイトルに遷移
     public void NextTitle()
     {
         SceneManager.LoadScene("TitleScene");
+    }
+
+    // ランキングに遷移
+    public void NextRanking()
+    {
+        SceneManager.LoadScene("RankingScene");
     }
 
     // ステージセレクトに遷移
@@ -21,6 +29,14 @@ public class SceneController : MonoBehaviour
     public void ChoiceStage(int num)
     {
         SceneManager.LoadScene("Stage" + (num) + "Scene");
+    }
+
+    // ランダムにステージ遷移
+    public void RandomStage()
+    {
+        int randomNum = Random.Range(0, LAST_STAGE);
+
+        SceneManager.LoadScene("Stage" + (randomNum) + "Scene");
     }
 
     public void ExitGame()

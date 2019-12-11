@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(InputField))]
-[RequireComponent(typeof(Text))]
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(InputField), typeof(Text), typeof(AudioSource))]
 
 public class GameController : MonoBehaviour
 {
