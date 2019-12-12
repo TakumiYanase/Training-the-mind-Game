@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    const int LAST_STAGE = 16; // 最後のステージに＋１
+    const int FIRST_STAGE = 0;
+    const int LAST_STAGE = 15;
 
     // タイトルに遷移
     public void NextTitle()
@@ -34,7 +35,7 @@ public class SceneController : MonoBehaviour
     // ランダムにステージ遷移
     public void RandomStage()
     {
-        int randomNum = Random.Range(0, LAST_STAGE);
+        int randomNum = Random.Range(FIRST_STAGE, (LAST_STAGE + 1));
 
         SceneManager.LoadScene("Stage" + (randomNum) + "Scene");
     }
