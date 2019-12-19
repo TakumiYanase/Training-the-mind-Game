@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: afc7ab91c6528614bb294fea8039fc75
   - enabled: 1
+    path: Assets/Scenes/ReadyScene.unity
+    guid: d473862122198f44cbf3ad93824790d0
+  - enabled: 1
     path: Assets/Scenes/RankingScene.unity
     guid: 0f490fac73116d44a85a3cb3563c3447
   - enabled: 1
@@ -59,4 +62,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage/Stage15Scene.unity
     guid: b14635e9e83d99b4ebdcca43de97de8f
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage16Scene.unity
+    guid: 5c14bed816063fb42aed4ef59253145b
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage17Scene.unity
+    guid: 082104e2ef03bd446a7b964160914eb2
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage18Scene.unity
+    guid: 56bf04a2f03d08544ba98e5392a96cf0
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage19Scene.unity
+    guid: d3161b1d46037a94ca9c3a435ec09180
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage20Scene.unity
+    guid: 7aaa1374eb95bef4a8ed86bd667bb555
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage21Scene.unity
+    guid: 532a03dc6b859934bb6e429e5360d121
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage22Scene.unity
+    guid: cf891200b809ed34bbb3b03574667fd4
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage23Scene.unity
+    guid: 2bd651a8aaf1bd047b6cd5102e394115
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage24Scene.unity
+    guid: 9ac56503668414749ae3eb18d3e72e91
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage25Scene.unity
+    guid: e1ace4282a2269642bf801718c3f97f4
   m_configObjects: {}
