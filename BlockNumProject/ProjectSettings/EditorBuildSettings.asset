@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: afc7ab91c6528614bb294fea8039fc75
   - enabled: 1
+    path: Assets/Scenes/RankingScene.unity
+    guid: 0f490fac73116d44a85a3cb3563c3447
+  - enabled: 1
     path: Assets/Scenes/StageSelectScene.unity
     guid: 6c7323c0b88bbf245a8e999898daa77f
   - enabled: 1
