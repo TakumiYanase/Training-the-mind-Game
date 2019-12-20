@@ -267,4 +267,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_countDownText: {fileID: 3548152661146761440}
-  m_countTime: 5
+  m_countTime: 10

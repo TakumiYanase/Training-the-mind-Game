@@ -75,15 +75,17 @@ public class CountDown : MonoBehaviour
             data.second = data.first;
             data.first = score;
         }
-        if (rankingSecond <= score && rankingFirst > score)
+        if (rankingSecond <= score || rankingFirst > score)
         {
             data.third = data.second;
             data.second = score;
         }
-        if (rankingThird <= score && rankingSecond > score)
+        if (rankingThird <= score || rankingSecond > score)
         {
             data.third = score;
         }
+
+
 
         // JSONにシリアライズ
         var json = JsonUtility.ToJson(data);
