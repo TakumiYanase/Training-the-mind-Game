@@ -17,17 +17,17 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Text m_answerText;
 
-    [SerializeField,HeaderAttribute("Image Data"), Space(5)]
-    private Image m_correctAnswer;
+    [SerializeField, HeaderAttribute("Image Data"), Space(5)]
+    private Image m_correctAnswer = null;
     [SerializeField]
-    private Image m_incorrectAnswer;
+    private Image m_incorrectAnswer = null;
 
-    [SerializeField,HeaderAttribute("SE Data"), Space(5)]
-    private AudioClip m_correctSE;
+    [SerializeField, HeaderAttribute("SE Data"), Space(5)]
+    private AudioClip m_correctSE = null;
     [SerializeField]
-    private AudioClip m_incorrectSE;
+    private AudioClip m_incorrectSE = null;
 
-    private AudioSource m_audioSource;
+    private AudioSource m_audioSource = null;
 
     private bool m_correctFlag = false;
     private bool m_incorrectFlag = false;

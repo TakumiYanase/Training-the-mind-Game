@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Text))]
 
@@ -15,18 +16,19 @@ public class CountDown : MonoBehaviour
         public int first;
         public int second;
         public int third;
+        public int newScore;
     }
 
     [SerializeField]
-    private Text m_countDownText;
+    private Text m_countDownText = null;
+    [SerializeField]
+    private Image m_countDownImage = null;
 
     [SerializeField, Range(5.0f, 500.0f), HeaderAttribute("Limited Time")]
     private float m_countTime = 300.0f;
 
-    private int m_seconds = 9999;
-
+    private int m_seconds = 999;
     private int m_score = 0;
-
     private int[] m_ranking = new int[3];
 
     // 保存するファイル
@@ -62,6 +64,11 @@ public class CountDown : MonoBehaviour
         if (m_seconds <= 0)
         {
             RankingCheck(m_ranking[0], m_ranking[1], m_ranking[2], m_score);
+            m_seconds = 0;
+            m_countDownImage.gameObject.SetActive(false);
+            m_countDownText.gameObject.SetActive(false);
+            NextResult();
+            Destroy(this.gameObject);
         }
     }
 
@@ -69,23 +76,26 @@ public class CountDown : MonoBehaviour
     {
         var data = new RankingData();
 
+        data.first = rankingFirst;
+        data.second = rankingSecond;
+        data.third = rankingThird;
+        data.newScore = score;
+
         if (rankingFirst <= score)
         {
             data.third = data.second;
             data.second = data.first;
             data.first = score;
         }
-        if (rankingSecond <= score || rankingFirst > score)
+        if (rankingSecond <= score && rankingFirst > score)
         {
             data.third = data.second;
             data.second = score;
         }
-        if (rankingThird <= score || rankingSecond > score)
+        if (rankingThird <= score && rankingSecond > score)
         {
             data.third = score;
         }
-
-
 
         // JSONにシリアライズ
         var json = JsonUtility.ToJson(data);
@@ -100,5 +110,10 @@ public class CountDown : MonoBehaviour
     public void AddScore()
     {
         m_score++;
+    }
+
+    public void NextResult()
+    {
+        SceneManager.LoadScene(4);
     }
 }

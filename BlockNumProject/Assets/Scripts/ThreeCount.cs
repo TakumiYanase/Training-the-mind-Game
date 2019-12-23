@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class ThreeCount : MonoBehaviour
 {
     [SerializeField]
@@ -18,12 +20,23 @@ public class ThreeCount : MonoBehaviour
     [SerializeField]
     private SceneController m_sceneController = null;
 
+    private AudioSource m_audioSource = null;
+
+    [SerializeField, HeaderAttribute("SE Data"), Space(5)]
+    private AudioClip m_goSE = null;
+    [SerializeField]
+    private AudioClip m_threeCountSE = null;
+
     public void Start()
     {
+        m_audioSource = GetComponent<AudioSource>();
+
         m_go.gameObject.SetActive(false);
         m_one.gameObject.SetActive(false);
         m_two.gameObject.SetActive(false);
         m_three.gameObject.SetActive(true);
+
+        m_audioSource.PlayOneShot(m_threeCountSE);
 
         StartCoroutine(this.DelayMethod(1.0f, CountThree));
         StartCoroutine(this.DelayMethod(2.0f, CountTwo));
@@ -50,18 +63,21 @@ public class ThreeCount : MonoBehaviour
     {
         m_one.gameObject.SetActive(false);
         m_go.gameObject.SetActive(true);
+        m_audioSource.PlayOneShot(m_goSE);
     }
 
     private void CountTwo()
     {
         m_two.gameObject.SetActive(false);
         m_one.gameObject.SetActive(true);
+        m_audioSource.PlayOneShot(m_threeCountSE);
     }
 
     private void CountThree()
     {
         m_three.gameObject.SetActive(false);
         m_two.gameObject.SetActive(true);
+        m_audioSource.PlayOneShot(m_threeCountSE);
     }
     #endregion
 }
