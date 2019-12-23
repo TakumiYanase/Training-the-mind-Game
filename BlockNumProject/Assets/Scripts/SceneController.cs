@@ -11,31 +11,31 @@ public class SceneController : MonoBehaviour
     // タイトルに遷移
     public void NextTitle()
     {
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene(0);
     }
 
     // カウントダウンに遷移
     public void NextReady()
     {
-        SceneManager.LoadScene("ReadyScene");
+        SceneManager.LoadScene(1);
     }
 
     // ランキングに遷移
     public void NextRanking()
     {
-        SceneManager.LoadScene("RankingScene");
+        SceneManager.LoadScene(2);
     }
 
     // ステージセレクトに遷移
     public void NextStageSelect()
     {
-        SceneManager.LoadScene("StageSelectScene");
+        SceneManager.LoadScene(3);
     }
 
     // 任意ステージに遷移
     public void ChoiceStage(int num)
     {
-        SceneManager.LoadScene("Stage" + (num) + "Scene");
+        SceneManager.LoadScene(num + 4);
     }
 
     // ランダムにステージ遷移
@@ -43,7 +43,7 @@ public class SceneController : MonoBehaviour
     {
         int randomNum = Random.Range(FIRST_STAGE, (LAST_STAGE + 1));
 
-        SceneManager.LoadScene("Stage" + (randomNum) + "Scene");
+        SceneManager.LoadScene(randomNum + 4);
     }
 
     public void ExitGame()

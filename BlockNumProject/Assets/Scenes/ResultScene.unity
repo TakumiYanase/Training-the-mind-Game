@@ -893,6 +893,26 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8689979245991358064, guid: bb8100edf22ca9a45b2b1127bb8c65fa,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689979245991358064, guid: bb8100edf22ca9a45b2b1127bb8c65fa,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689979245991358064, guid: bb8100edf22ca9a45b2b1127bb8c65fa,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689979245991358064, guid: bb8100edf22ca9a45b2b1127bb8c65fa,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb8100edf22ca9a45b2b1127bb8c65fa, type: 3}
 --- !u!1 &1739846823

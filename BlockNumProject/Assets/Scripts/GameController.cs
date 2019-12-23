@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         m_inputField = m_inputField.GetComponent<InputField>();
+        m_inputField.ActivateInputField();
         m_text = m_text.GetComponent<Text>();
         m_answerText = m_answerText.GetComponent<Text>();
         m_audioSource = GetComponent<AudioSource>();
