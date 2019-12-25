@@ -11,15 +11,13 @@ public class ScaleBlock : MonoBehaviour
     public float minScale;
     public float maxScale;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
         m_scale = transform.localScale;
         m_judge = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.localScale = m_scale;
         if(m_judge)

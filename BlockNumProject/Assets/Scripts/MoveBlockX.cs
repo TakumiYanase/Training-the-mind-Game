@@ -10,15 +10,13 @@ public class MoveBlockX : MonoBehaviour
     public float minX;
     public float maxX;
 
-    // Use this for initialization
-    void Start()
+    public void Awake()
     {
         m_pos = transform.localPosition;
         m_judge = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.localPosition = m_pos;
         if (m_judge)

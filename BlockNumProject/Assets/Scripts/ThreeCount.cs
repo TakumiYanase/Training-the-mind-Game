@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using Common;
+
 [RequireComponent(typeof(AudioSource))]
 
 public class ThreeCount : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, HeaderAttribute("Image Dara")]
     private Image m_go = null;
     [SerializeField]
     private Image m_one = null;
@@ -20,14 +22,13 @@ public class ThreeCount : MonoBehaviour
     [SerializeField]
     private SceneController m_sceneController = null;
 
-    private AudioSource m_audioSource = null;
-
     [SerializeField, HeaderAttribute("SE Data"), Space(5)]
     private AudioClip m_goSE = null;
     [SerializeField]
     private AudioClip m_threeCountSE = null;
+    private AudioSource m_audioSource = null;
 
-    public void Start()
+    public void Awake()
     {
         m_audioSource = GetComponent<AudioSource>();
 
@@ -49,7 +50,7 @@ public class ThreeCount : MonoBehaviour
     private void CountGo()
     {
         // Prefab を取得
-        GameObject countDown = (GameObject)Resources.Load("Prefabs/CountDown");
+        GameObject countDown = (GameObject)Resources.Load(Define.PREFAB_PATH);
         // Prefab からインスタンス化
         var obj = Instantiate(countDown);
         if (obj != null) DontDestroyOnLoad(obj);

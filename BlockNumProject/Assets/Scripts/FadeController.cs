@@ -14,9 +14,9 @@ public class FadeController : MonoBehaviour
     public bool isFadeOut = false;  
     public bool isFadeIn = false;   
 
-    Image fadeImage;                
+    Image fadeImage;
 
-    void Start()
+    public void Awake()
     {
         fadeImage = GetComponent<Image>();
         red = fadeImage.color.r;
@@ -25,7 +25,7 @@ public class FadeController : MonoBehaviour
         alfa = fadeImage.color.a;
     }
 
-    void Update()
+    public void Update()
     {
         if (isFadeIn)
         {

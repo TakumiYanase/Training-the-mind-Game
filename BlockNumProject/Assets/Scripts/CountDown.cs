@@ -6,6 +6,8 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using Common;
+
 [RequireComponent(typeof(Text))]
 
 public class CountDown : MonoBehaviour
@@ -24,22 +26,19 @@ public class CountDown : MonoBehaviour
     [SerializeField]
     private Image m_countDownImage = null;
 
-    [SerializeField, Range(5.0f, 500.0f), HeaderAttribute("Limited Time")]
-    private float m_countTime = 300.0f;
+    [SerializeField, Range(Define.COUNT_LIMITED_TIME_MIN, Define.COUNT_LIMITED_TIME_MAX), HeaderAttribute("Limited Time")]
+    private float m_countTime = Define.COUNT_TIME_INIT;
 
-    private int m_seconds = 999;
+    private int m_seconds = Define.COUNT_TIME_MAX;
     private int m_score = 0;
-    private int[] m_ranking = new int[3];
+    private int[] m_ranking = new int[Define.RANKING_LIST_END];
 
-    // 保存するファイル
-    const string SAVE_FILE_PATH = "Ranking.txt";
-
-    void Start()
+    public void Awake()
     {
         m_countDownText = m_countDownText.GetComponent<Text>();
 
         // フォルダからロード
-        var info = new FileInfo(Application.dataPath + "/" + SAVE_FILE_PATH);
+        var info = new FileInfo(Application.dataPath + Define.SAVE_FILE_PATH);
         var reader = new StreamReader(info.OpenRead());
         var json = reader.ReadToEnd();
         var data = JsonUtility.FromJson<RankingData>(json);
@@ -49,9 +48,9 @@ public class CountDown : MonoBehaviour
         m_ranking[2] = data.third;
     }
 
-    void Update()
+    public void Update()
     {
-        GameObject.Find("CountDown(Clone)").GetComponent<Canvas>().worldCamera = Camera.main;
+        GameObject.Find(Define.COUNT_DOWN_PREFAB).GetComponent<Canvas>().worldCamera = Camera.main;
 
         // カウントダウン
         if (m_countTime > 0)
@@ -100,7 +99,7 @@ public class CountDown : MonoBehaviour
         // JSONにシリアライズ
         var json = JsonUtility.ToJson(data);
         // Assetsフォルダに保存する
-        var path = Application.dataPath + "/" + SAVE_FILE_PATH;
+        var path = Application.dataPath + Define.SAVE_FILE_PATH;
         var writer = new StreamWriter(path, false);
         writer.WriteLine(json);
         writer.Flush();
@@ -114,6 +113,6 @@ public class CountDown : MonoBehaviour
 
     public void NextResult()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(Define.SCENE_RESULT);
     }
 }

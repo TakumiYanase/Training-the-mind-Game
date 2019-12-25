@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using Common;
+
 [RequireComponent(typeof(InputField), typeof(Text), typeof(AudioSource))]
 
 public class GameController : MonoBehaviour
@@ -26,31 +28,36 @@ public class GameController : MonoBehaviour
     private AudioClip m_correctSE = null;
     [SerializeField]
     private AudioClip m_incorrectSE = null;
-
     private AudioSource m_audioSource = null;
-
-    private bool m_correctFlag = false;
-    private bool m_incorrectFlag = false;
 
     [SerializeField, HeaderAttribute("SceneController Prefab"), Space(5)]
     private SceneController m_sceneController = null;
 
     private CountDown m_countDown = null;
+    private bool m_correctFlag;
+    private bool m_incorrectFlag;
 
-    void Start()
+    public void Awake()
     {
         m_inputField = m_inputField.GetComponent<InputField>();
-        m_inputField.ActivateInputField();
         m_text = m_text.GetComponent<Text>();
         m_answerText = m_answerText.GetComponent<Text>();
         m_audioSource = GetComponent<AudioSource>();
-        m_countDown = GameObject.Find("CountDown(Clone)").GetComponent<CountDown>();
+        m_countDown = GameObject.Find(Define.COUNT_DOWN_PREFAB).GetComponent<CountDown>();
+
+        m_correctFlag = false;
+        m_incorrectFlag = false;
 
         m_correctAnswer.gameObject.SetActive(false);
         m_incorrectAnswer.gameObject.SetActive(false);
     }
 
-    void Update()
+    public void Start()
+    {
+        m_inputField.ActivateInputField();
+    }
+
+    public void Update()
     {
         if (m_correctFlag)
             StartCoroutine(this.DelayMethod(1.0f, NextStage));

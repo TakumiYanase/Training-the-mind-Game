@@ -5,6 +5,8 @@ using System;
 using System.IO;
 using UnityEngine.UI;
 
+using Common;
+
 public class NewScore : MonoBehaviour
 {
     [Serializable]
@@ -19,12 +21,10 @@ public class NewScore : MonoBehaviour
     private int m_newScore = 0;
     private Text m_text = null;
 
-    const string SAVE_FILE_PATH = "Ranking.txt";
-
-    void Start()
+    public void Awake()
     {
         // フォルダからロード
-        var info = new FileInfo(Application.dataPath + "/" + SAVE_FILE_PATH);
+        var info = new FileInfo(Application.dataPath + Define.SAVE_FILE_PATH);
         var reader = new StreamReader(info.OpenRead());
         var json = reader.ReadToEnd();
         var data = JsonUtility.FromJson<RankingData>(json);
@@ -34,8 +34,7 @@ public class NewScore : MonoBehaviour
         m_text = this.gameObject.GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         m_text.text = m_newScore.ToString();
     }

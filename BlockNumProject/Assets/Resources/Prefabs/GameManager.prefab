@@ -241,8 +241,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 7537834969586366385}
   - {fileID: 7537834970470694073}
+  - {fileID: 7537834969586366385}
   - {fileID: 7537834968982647753}
   - {fileID: 7537834969643896556}
   - {fileID: 7537834969345430588}
@@ -715,7 +715,7 @@ RectTransform:
   - {fileID: 7537834969213095159}
   - {fileID: 7537834969499298309}
   m_Father: {fileID: 3992768604796358400}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -810,7 +810,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7537834970470694075}
-        m_MethodName: InputText
+        m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -986,7 +986,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b53c7e2848ac9c14db1dbd9cdfda26d3, type: 3}
     m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u56DE\u7B54\u3092\u5165\u529B"
+  m_Text: "\u56DE\u7B54\u3092\u5165\u529B\u3057\u3066\n\u30A8\u30F3\u30BF\u30FC\u30AD\u30FC"
 --- !u!1 &7537834969978836991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1197,7 @@ Transform:
   m_LocalScale: {x: 108.000015, y: 108, z: 108}
   m_Children: []
   m_Father: {fileID: 3992768604796358400}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7537834970470694075
 MonoBehaviour:

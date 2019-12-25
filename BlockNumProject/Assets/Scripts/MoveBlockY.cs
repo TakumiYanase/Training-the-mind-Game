@@ -10,15 +10,13 @@ public class MoveBlockY : MonoBehaviour {
     public float minY;
     public float maxY;
 
-    // Use this for initialization
-    void Start()
+    public void Start()
     {
         m_pos = transform.localPosition;
         m_judge = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.localPosition = m_pos;
         if (m_judge)

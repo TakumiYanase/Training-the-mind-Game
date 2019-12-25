@@ -10,17 +10,13 @@ public class MoveBlockZ : MonoBehaviour
     public float minZ;
     public float maxZ;
 
-    // Use this for initialization
-    void Start()
+    public void Awake()
     {
         m_pos = transform.localPosition;
         m_judge = true;
-        //minZ = 0.0f;
-        //maxZ = 1.0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.localPosition = m_pos;
         if (m_judge)

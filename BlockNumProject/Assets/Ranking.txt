@@ -1,1 +1,1 @@
-{"first":3,"second":2,"third":2,"newScore":0}
+{"first":6,"second":6,"third":0,"newScore":0}
