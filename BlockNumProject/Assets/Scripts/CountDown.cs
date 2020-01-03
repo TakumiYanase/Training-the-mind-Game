@@ -12,15 +12,6 @@ using Common;
 
 public class CountDown : MonoBehaviour
 {
-    [Serializable]
-    public struct RankingData
-    {
-        public int first;
-        public int second;
-        public int third;
-        public int newScore;
-    }
-
     [SerializeField]
     private Text m_countDownText = null;
     [SerializeField]
@@ -31,21 +22,35 @@ public class CountDown : MonoBehaviour
 
     private int m_seconds = Define.COUNT_TIME_MAX;
     private int m_score = 0;
-    private int[] m_ranking = new int[Define.RANKING_LIST_END];
+    private int[] m_scoreData = new int[Define.RANKING_LIST_END];
+    private int[] m_year = new int[Define.RANKING_LIST_END];
+    private int[] m_month = new int[Define.RANKING_LIST_END];
+    private int[] m_day = new int[Define.RANKING_LIST_END];
+
 
     public void Awake()
     {
-        m_countDownText = m_countDownText.GetComponent<Text>();
-
         // フォルダからロード
         var info = new FileInfo(Application.dataPath + Define.SAVE_FILE_PATH);
         var reader = new StreamReader(info.OpenRead());
         var json = reader.ReadToEnd();
-        var data = JsonUtility.FromJson<RankingData>(json);
+        var data = JsonUtility.FromJson<ScoreUtility.RankingData>(json);
 
-        m_ranking[0] = data.first;
-        m_ranking[1] = data.second;
-        m_ranking[2] = data.third;
+        m_scoreData[0] = data.first;
+        m_scoreData[1] = data.second;
+        m_scoreData[2] = data.third;
+
+        m_year[0] = data.yearFirst;
+        m_year[1] = data.yearSecond;
+        m_year[2] = data.yearThird;
+
+        m_month[0] = data.monthFirst;
+        m_month[1] = data.monthSecond;
+        m_month[2] = data.monthThird;
+
+        m_day[0] = data.dayFirst;
+        m_day[1] = data.daySecond;
+        m_day[2] = data.dayThird;
     }
 
     public void Update()
@@ -62,7 +67,7 @@ public class CountDown : MonoBehaviour
 
         if (m_seconds <= 0)
         {
-            RankingCheck(m_ranking[0], m_ranking[1], m_ranking[2], m_score);
+            RankingCheck();
             m_seconds = 0;
             m_countDownImage.gameObject.SetActive(false);
             m_countDownText.gameObject.SetActive(false);
@@ -71,29 +76,69 @@ public class CountDown : MonoBehaviour
         }
     }
 
-    public void RankingCheck(int rankingFirst, int rankingSecond, int rankingThird, int score)
+    public void RankingCheck()
     {
-        var data = new RankingData();
+        var data = new ScoreUtility.RankingData();
+        DateTime dateNow = System.DateTime.Now;
 
-        data.first = rankingFirst;
-        data.second = rankingSecond;
-        data.third = rankingThird;
-        data.newScore = score;
+        data.first = m_scoreData[0];
+        data.second = m_scoreData[1];
+        data.third = m_scoreData[2];
+        data.newScore = m_score;
 
-        if (rankingFirst <= score)
+        data.yearFirst = m_year[0];
+        data.yearSecond = m_year[1];
+        data.yearThird = m_year[2];
+
+        data.monthFirst = m_month[0];
+        data.monthSecond = m_month[1];
+        data.monthThird = m_month[2];
+
+        data.dayFirst = m_day[0];
+        data.daySecond = m_day[1];
+        data.dayThird = m_day[2];
+
+        if (data.first <= m_score)
         {
             data.third = data.second;
             data.second = data.first;
-            data.first = score;
+            data.first = m_score;
+
+            data.yearThird = data.yearSecond;
+            data.yearSecond = data.yearFirst;
+            data.yearFirst = dateNow.Year;
+
+            data.monthThird = data.monthSecond;
+            data.monthSecond = data.monthFirst;
+            data.monthFirst = dateNow.Month;
+
+            data.dayThird = data.daySecond;
+            data.daySecond = data.dayFirst;
+            data.dayFirst = dateNow.Day;
         }
-        if (rankingSecond <= score && rankingFirst > score)
+        if (data.second <= m_score && data.first > m_score)
         {
             data.third = data.second;
-            data.second = score;
+            data.second = m_score;
+
+            data.yearThird = data.yearSecond;
+            data.yearSecond = dateNow.Year;
+
+            data.monthThird = data.monthSecond;
+            data.monthSecond = dateNow.Month;
+
+            data.dayThird = data.daySecond;
+            data.daySecond = dateNow.Day;
         }
-        if (rankingThird <= score && rankingSecond > score)
+        if (data.third <= m_score && data.second > m_score)
         {
-            data.third = score;
+            data.third = m_score;
+
+            data.yearThird = dateNow.Year;
+
+            data.monthThird = dateNow.Month;
+
+            data.dayThird = dateNow.Day;
         }
 
         // JSONにシリアライズ

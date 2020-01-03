@@ -873,18 +873,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 511812566}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1917876035 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7537834969586366396, guid: e6e1c425e93f5eb4584ec739d64c8599,
-    type: 3}
-  m_PrefabInstance: {fileID: 7537834969912892603}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1984436225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7537834969643896547, guid: e6e1c425e93f5eb4584ec739d64c8599,
@@ -1181,7 +1169,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_inputField
       value: 
-      objectReference: {fileID: 1917876035}
+      objectReference: {fileID: 7537834969912892604}
     - target: {fileID: 7537834970470694075, guid: e6e1c425e93f5eb4584ec739d64c8599,
         type: 3}
       propertyPath: m_correctAnswer
@@ -1207,17 +1195,32 @@ PrefabInstance:
       propertyPath: m_sceneController
       value: 
       objectReference: {fileID: 141048672}
+    - target: {fileID: 7537834969978836991, guid: e6e1c425e93f5eb4584ec739d64c8599,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537834969586366396, guid: e6e1c425e93f5eb4584ec739d64c8599,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537834969586366396, guid: e6e1c425e93f5eb4584ec739d64c8599,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537834969586366396, guid: e6e1c425e93f5eb4584ec739d64c8599,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7537834969938492815, guid: e6e1c425e93f5eb4584ec739d64c8599,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 8895039519302ea4f867f496adfc0282,
         type: 3}
-    - target: {fileID: 7537834969978836991, guid: e6e1c425e93f5eb4584ec739d64c8599,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7537834969978836988, guid: e6e1c425e93f5eb4584ec739d64c8599,
         type: 3}
       propertyPath: m_Color.r
@@ -1241,3 +1244,15 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6e1c425e93f5eb4584ec739d64c8599, type: 3}
+--- !u!114 &7537834969912892604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4877772595161321466, guid: e6e1c425e93f5eb4584ec739d64c8599,
+    type: 3}
+  m_PrefabInstance: {fileID: 7537834969912892603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a611a06fc898fb4bb11d98d5fafcefe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

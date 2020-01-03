@@ -1,1 +1,1 @@
-{"first":6,"second":6,"third":0,"newScore":0}
+{"first":0,"second":0,"third":0,"newScore":0,"yearFirst":2020,"yearSecond":2019,"yearThird":2019,"monthFirst":1,"monthSecond":12,"monthThird":12,"dayFirst":4,"daySecond":31,"dayThird":31}

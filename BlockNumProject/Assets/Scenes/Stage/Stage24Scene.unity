@@ -1525,6 +1525,11 @@ PrefabInstance:
       propertyPath: m_sceneController
       value: 
       objectReference: {fileID: 334283446}
+    - target: {fileID: 7537834969978836991, guid: e6e1c425e93f5eb4584ec739d64c8599,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7537834969499298311, guid: e6e1c425e93f5eb4584ec739d64c8599,
         type: 3}
       propertyPath: m_Text
@@ -1680,11 +1685,6 @@ PrefabInstance:
       propertyPath: _stageNum
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 7537834969978836991, guid: e6e1c425e93f5eb4584ec739d64c8599,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6e1c425e93f5eb4584ec739d64c8599, type: 3}
 --- !u!114 &991131489 stripped
@@ -1713,14 +1713,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &991131491 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7537834969586366396, guid: e6e1c425e93f5eb4584ec739d64c8599,
+  m_CorrespondingSourceObject: {fileID: 4877772595161321466, guid: e6e1c425e93f5eb4584ec739d64c8599,
     type: 3}
   m_PrefabInstance: {fileID: 991131488}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a611a06fc898fb4bb11d98d5fafcefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &991131492 stripped

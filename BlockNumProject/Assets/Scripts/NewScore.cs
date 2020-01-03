@@ -9,15 +9,6 @@ using Common;
 
 public class NewScore : MonoBehaviour
 {
-    [Serializable]
-    public struct RankingData
-    {
-        public int first;
-        public int second;
-        public int third;
-        public int newScore;
-    }
-
     private int m_newScore = 0;
     private Text m_text = null;
 
@@ -27,15 +18,10 @@ public class NewScore : MonoBehaviour
         var info = new FileInfo(Application.dataPath + Define.SAVE_FILE_PATH);
         var reader = new StreamReader(info.OpenRead());
         var json = reader.ReadToEnd();
-        var data = JsonUtility.FromJson<RankingData>(json);
+        var data = JsonUtility.FromJson<ScoreUtility.RankingData>(json);
 
         m_newScore = data.newScore;
-
         m_text = this.gameObject.GetComponent<Text>();
-    }
-
-    public void Update()
-    {
         m_text.text = m_newScore.ToString();
     }
 }

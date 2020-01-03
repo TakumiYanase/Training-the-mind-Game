@@ -26,6 +26,7 @@ public class ThreeCount : MonoBehaviour
     private AudioClip m_goSE = null;
     [SerializeField]
     private AudioClip m_threeCountSE = null;
+
     private AudioSource m_audioSource = null;
 
     public void Awake()
@@ -37,12 +38,7 @@ public class ThreeCount : MonoBehaviour
         m_two.gameObject.SetActive(false);
         m_three.gameObject.SetActive(true);
 
-        m_audioSource.PlayOneShot(m_threeCountSE);
-
-        StartCoroutine(this.DelayMethod(1.0f, CountThree));
-        StartCoroutine(this.DelayMethod(2.0f, CountTwo));
-        StartCoroutine(this.DelayMethod(3.0f, CountOne));
-        StartCoroutine(this.DelayMethod(4.0f, CountGo));
+        this.StartCoroutine(CountDown());
     }
 
     #region CountDown
@@ -60,25 +56,23 @@ public class ThreeCount : MonoBehaviour
         sceneContoroller.RandomStage();
     }
 
-    private void CountOne()
+    protected IEnumerator CountDown()
     {
-        m_one.gameObject.SetActive(false);
+        var wait = new WaitForSeconds(1.0f);
+
+        var countObj = new Image[] { m_go, m_one, m_two, m_three };
+        var clips = new AudioClip[] { m_goSE, m_threeCountSE, m_threeCountSE, m_threeCountSE };
+
+        for (int i = countObj.Length - 1; i >= 0; --i)
+        {
+            countObj[i].gameObject.SetActive(true);
+            m_audioSource.PlayOneShot(clips[i]);
+            yield return wait;
+            countObj[i].gameObject.SetActive(false);
+        }
+
         m_go.gameObject.SetActive(true);
-        m_audioSource.PlayOneShot(m_goSE);
-    }
-
-    private void CountTwo()
-    {
-        m_two.gameObject.SetActive(false);
-        m_one.gameObject.SetActive(true);
-        m_audioSource.PlayOneShot(m_threeCountSE);
-    }
-
-    private void CountThree()
-    {
-        m_three.gameObject.SetActive(false);
-        m_two.gameObject.SetActive(true);
-        m_audioSource.PlayOneShot(m_threeCountSE);
+        CountGo();
     }
     #endregion
 }

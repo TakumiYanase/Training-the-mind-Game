@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 using Common;
 
-[RequireComponent(typeof(InputField), typeof(Text), typeof(AudioSource))]
+[RequireComponent(typeof(InputFieldEX), typeof(Text), typeof(AudioSource))]
 
 public class GameController : MonoBehaviour
 {
     [SerializeField, HeaderAttribute("InputField")]
-    private InputField m_inputField;
+    private InputFieldEX m_inputField;
 
     [SerializeField, HeaderAttribute("Text Data"), Space(5)]
     private Text m_text;
@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     private AudioClip m_correctSE = null;
     [SerializeField]
     private AudioClip m_incorrectSE = null;
+
     private AudioSource m_audioSource = null;
 
     [SerializeField, HeaderAttribute("SceneController Prefab"), Space(5)]
@@ -39,9 +40,6 @@ public class GameController : MonoBehaviour
 
     public void Awake()
     {
-        m_inputField = m_inputField.GetComponent<InputField>();
-        m_text = m_text.GetComponent<Text>();
-        m_answerText = m_answerText.GetComponent<Text>();
         m_audioSource = GetComponent<AudioSource>();
         m_countDown = GameObject.Find(Define.COUNT_DOWN_PREFAB).GetComponent<CountDown>();
 
@@ -55,8 +53,10 @@ public class GameController : MonoBehaviour
     public void Start()
     {
         m_inputField.ActivateInputField();
+        m_inputField.onEndEdit.AddListener((arg) => { CheckAnswer(); });
+        
     }
-
+ 
     public void Update()
     {
         if (m_correctFlag)
@@ -73,6 +73,12 @@ public class GameController : MonoBehaviour
 
     public void CheckAnswer()
     {
+        if (string.IsNullOrEmpty(m_inputField.text))
+        {
+            m_inputField.ActivateInputField();
+            return;
+        }
+
         // 判定
         if (m_inputField.text == m_answerText.text)
         {
