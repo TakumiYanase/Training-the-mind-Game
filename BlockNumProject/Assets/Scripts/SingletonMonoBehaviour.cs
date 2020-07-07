@@ -1,9 +1,18 @@
-﻿using UnityEngine;
+﻿//==============================================================================================
+/// File Name	: SingletonMonoBehaviour
+/// Summary		: 継承したスクリプトをシングルトンにする
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using UnityEngine;
 using System;
+//==============================================================================================
 
 public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
-
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     private static T instance;
     public static T Instance
     {
@@ -24,6 +33,9 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBe
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    // Awake
+    //------------------------------------------------------------------------------------------
     virtual protected void Awake()
     {
         // 他のゲームオブジェクトにアタッチされているか調べる
@@ -31,6 +43,9 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBe
         CheckInstance();
     }
 
+    //------------------------------------------------------------------------------------------
+    // CheckInstance
+    //------------------------------------------------------------------------------------------
     protected bool CheckInstance()
     {
         if (instance == null)

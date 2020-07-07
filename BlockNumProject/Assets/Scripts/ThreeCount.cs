@@ -1,15 +1,23 @@
-﻿using System.Collections;
+﻿//==============================================================================================
+/// File Name	: ThreeCount
+/// Summary		: 3カウントを行う
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 using Common;
-
+//==============================================================================================
 [RequireComponent(typeof(AudioSource))]
 
 public class ThreeCount : MonoBehaviour
 {
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     [SerializeField, HeaderAttribute("Image Dara")]
     private Image m_go = null;
     [SerializeField]
@@ -29,6 +37,9 @@ public class ThreeCount : MonoBehaviour
 
     private AudioSource m_audioSource = null;
 
+    //------------------------------------------------------------------------------------------
+    // Awake
+    //------------------------------------------------------------------------------------------
     public void Awake()
     {
         m_audioSource = GetComponent<AudioSource>();
@@ -43,6 +54,9 @@ public class ThreeCount : MonoBehaviour
 
     #region CountDown
 
+    //------------------------------------------------------------------------------------------
+    // CountGo
+    //------------------------------------------------------------------------------------------
     private void CountGo()
     {
         // Prefab を取得
@@ -56,6 +70,9 @@ public class ThreeCount : MonoBehaviour
         sceneContoroller.RandomStage();
     }
 
+    //------------------------------------------------------------------------------------------
+    // CountDown
+    //------------------------------------------------------------------------------------------
     protected IEnumerator CountDown()
     {
         var wait = new WaitForSeconds(1.0f);

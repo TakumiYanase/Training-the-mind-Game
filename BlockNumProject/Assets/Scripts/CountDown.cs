@@ -1,17 +1,25 @@
-﻿using System.Collections;
+﻿//==============================================================================================
+/// File Name	: CountDown
+/// Summary		: カウントダウン遷移・スコア保存
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 using Common;
-
+//==============================================================================================
 [RequireComponent(typeof(Text))]
 
 public class CountDown : MonoBehaviour
 {
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     [SerializeField]
     private Text m_countDownText = null;
     [SerializeField]
@@ -27,7 +35,9 @@ public class CountDown : MonoBehaviour
     private int[] m_month = new int[Define.RANKING_LIST_END];
     private int[] m_day = new int[Define.RANKING_LIST_END];
 
-
+    //------------------------------------------------------------------------------------------
+    // Awake
+    //------------------------------------------------------------------------------------------
     public void Awake()
     {
         // フォルダからロード
@@ -53,6 +63,9 @@ public class CountDown : MonoBehaviour
         m_day[2] = data.dayThird;
     }
 
+    //------------------------------------------------------------------------------------------
+    // Update
+    //------------------------------------------------------------------------------------------
     public void Update()
     {
         GameObject.Find(Define.COUNT_DOWN_PREFAB).GetComponent<Canvas>().worldCamera = Camera.main;
@@ -76,6 +89,9 @@ public class CountDown : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    // RankingCheck
+    //------------------------------------------------------------------------------------------
     public void RankingCheck()
     {
         var data = new ScoreUtility.RankingData();
@@ -151,11 +167,17 @@ public class CountDown : MonoBehaviour
         writer.Close();
     }
 
+    //------------------------------------------------------------------------------------------
+    // AddScore
+    //------------------------------------------------------------------------------------------
     public void AddScore()
     {
         m_score++;
     }
 
+    //------------------------------------------------------------------------------------------
+    // NextResult
+    //------------------------------------------------------------------------------------------
     public void NextResult()
     {
         SceneManager.LoadScene(Define.SCENE_RESULT);

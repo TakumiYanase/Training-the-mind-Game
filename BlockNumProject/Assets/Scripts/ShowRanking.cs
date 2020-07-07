@@ -1,14 +1,23 @@
-﻿using System.Collections;
+﻿//==============================================================================================
+/// File Name	: ShowRanking
+/// Summary		: ランキングデータ参照
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
 using UnityEngine.UI;
-
 using Common;
+//==============================================================================================
 
 public class ShowRanking : MonoBehaviour
 {
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     [SerializeField]
     private Text[] m_scoreText = new Text[Define.RANKING_LIST_END];
     [SerializeField]
@@ -19,9 +28,12 @@ public class ShowRanking : MonoBehaviour
     private int[] m_month = new int[Define.RANKING_LIST_END];
     private int[] m_day = new int[Define.RANKING_LIST_END];
 
+    //------------------------------------------------------------------------------------------
+    // Awake
+    //------------------------------------------------------------------------------------------
     public void Awake()
     {
-        // フォルダからロード
+        // ロード
         var info = new FileInfo(Application.dataPath + Define.SAVE_FILE_PATH);
         var reader = new StreamReader(info.OpenRead());
         var json = reader.ReadToEnd();

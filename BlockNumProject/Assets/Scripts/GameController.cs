@@ -1,15 +1,23 @@
-﻿using System.Collections;
+﻿//==============================================================================================
+/// File Name	: GameController
+/// Summary		: ゲーム管理
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 using Common;
-
+//==============================================================================================
 [RequireComponent(typeof(InputFieldEX), typeof(Text), typeof(AudioSource))]
 
 public class GameController : MonoBehaviour
 {
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     [SerializeField, HeaderAttribute("InputField")]
     private InputFieldEX m_inputField;
 
@@ -38,6 +46,9 @@ public class GameController : MonoBehaviour
     private bool m_correctFlag;
     private bool m_incorrectFlag;
 
+    //------------------------------------------------------------------------------------------
+    // Awake
+    //------------------------------------------------------------------------------------------
     public void Awake()
     {
         m_audioSource = GetComponent<AudioSource>();
@@ -50,13 +61,19 @@ public class GameController : MonoBehaviour
         m_incorrectAnswer.gameObject.SetActive(false);
     }
 
+    //------------------------------------------------------------------------------------------
+    // Start
+    //------------------------------------------------------------------------------------------
     public void Start()
     {
         m_inputField.ActivateInputField();
         m_inputField.onEndEdit.AddListener((arg) => { CheckAnswer(); });
         
     }
- 
+
+    //------------------------------------------------------------------------------------------
+    // Update
+    //------------------------------------------------------------------------------------------
     public void Update()
     {
         if (m_correctFlag)
@@ -66,11 +83,17 @@ public class GameController : MonoBehaviour
             StartCoroutine(this.DelayMethod(1.0f, NextStage));
     }
 
+    //------------------------------------------------------------------------------------------
+    // InputText
+    //------------------------------------------------------------------------------------------
     public void InputText()
     {
         m_text.text = m_inputField.text;
     }
 
+    //------------------------------------------------------------------------------------------
+    // CheckAnswer
+    //------------------------------------------------------------------------------------------
     public void CheckAnswer()
     {
         if (string.IsNullOrEmpty(m_inputField.text))
@@ -95,6 +118,9 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    // NextStage
+    //------------------------------------------------------------------------------------------
     public void NextStage()
     {
         // ランダムにステージ遷移

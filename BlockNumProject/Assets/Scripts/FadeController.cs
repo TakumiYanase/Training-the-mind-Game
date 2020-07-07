@@ -1,13 +1,21 @@
-﻿using System.Collections;
+﻿//==============================================================================================
+/// File Name	: FadeController
+/// Summary		: フェード管理
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//==============================================================================================
 [RequireComponent(typeof(Image))]
 
 public class FadeController : MonoBehaviour
 {
-
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     float fadeSpeed = 0.02f;        
     float red, green, blue, alfa;   
 
@@ -16,6 +24,9 @@ public class FadeController : MonoBehaviour
 
     Image fadeImage;
 
+    //------------------------------------------------------------------------------------------
+    // Awake
+    //------------------------------------------------------------------------------------------
     public void Awake()
     {
         fadeImage = GetComponent<Image>();
@@ -25,6 +36,9 @@ public class FadeController : MonoBehaviour
         alfa = fadeImage.color.a;
     }
 
+    //------------------------------------------------------------------------------------------
+    // Update
+    //------------------------------------------------------------------------------------------
     public void Update()
     {
         if (isFadeIn)
@@ -38,6 +52,9 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    // StartFadeIn
+    //------------------------------------------------------------------------------------------
     void StartFadeIn()
     {
         alfa -= fadeSpeed;               
@@ -49,6 +66,9 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    // StartFadeOut
+    //------------------------------------------------------------------------------------------
     void StartFadeOut()
     {
         fadeImage.enabled = true;        
@@ -60,6 +80,9 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    //------------------------------------------------------------------------------------------
+    // SetAlpha
+    //------------------------------------------------------------------------------------------
     void SetAlpha()
     {
         fadeImage.color = new Color(red, green, blue, alfa);

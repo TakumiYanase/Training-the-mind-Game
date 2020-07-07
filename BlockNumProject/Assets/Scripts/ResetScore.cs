@@ -1,13 +1,22 @@
-﻿using System.Collections;
+﻿//==============================================================================================
+/// File Name	: ResetScore
+/// Summary		: リザルトスコア
+/// 
+/// Author      : Takumi Yanase (柳瀬 拓臣)
+//==============================================================================================
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-
 using Common;
+//==============================================================================================
 
 public class ResetScore : MonoBehaviour
 {
+    //------------------------------------------------------------------------------------------
+    // member variable
+    //------------------------------------------------------------------------------------------
     [SerializeField]
     private Text[] m_scoreText = new Text[Define.RANKING_LIST_END];
     [SerializeField]
@@ -18,6 +27,9 @@ public class ResetScore : MonoBehaviour
     private int[] m_month = new int[Define.RANKING_LIST_END];
     private int[] m_day = new int[Define.RANKING_LIST_END];
 
+    //------------------------------------------------------------------------------------------
+    // InitializeScore
+    //------------------------------------------------------------------------------------------
     public void InitializeScore()
     {
         var data = new ScoreUtility.RankingData();
